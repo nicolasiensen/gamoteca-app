@@ -3,21 +3,9 @@ import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 
 import GameTableRow from './GameTableRow';
+import { createGame } from '../factories';
 
-const game = {
-  id: 1505,
-  image_url: "https://apollo2.dl.playstation.net/cdn/EP2002/CUSA...",
-  name: "Rocket League®",
-  uuid: "EP2002-CUSA01433_00-ROCKETLEAGUEEU01",
-  platforms: ["PS4™"],
-  released_at: "2015-07-07 00:00:00",
-  price: 1399,
-  created_at: "2017-05-06 12:42:55",
-  updated_at: "2017-05-06 12:42:55",
-  vr_enabled: false,
-  score: 4.7,
-  score_count: 185092,
-}
+const game = createGame();
 
 const releasedAt = 'Jul 2015';
 const price = '€13.99';
@@ -34,7 +22,11 @@ Intl.NumberFormat = {
   )
 }
 
-const component = shallow(<GameTableRow game={game} />);
+const component = shallow(<GameTableRow game={game} className="row" />);
+
+it('should propagate the props to the TableRow', () => {
+  expect(component.find('TableRow').prop('className')).toBe('row')
+});
 
 it('should display the game title', () => {
   expect(component.findWhere(c => c.prop('children') === game.name).length).toBe(1);

@@ -12,12 +12,12 @@ const numberFormater = Intl.NumberFormat(navigator.language, {
   minimumFractionDigits: 2,
 });
 
-export default function GameTableRow(props) {
+export default function GameTableRow({ game, ...props }) {
   return (
-    <TableRow>
-      <TableRowColumn>{props.game.name}</TableRowColumn>
-      <TableRowColumn>{dateFormater.format(new Date(props.game.released_at))}</TableRowColumn>
-      <TableRowColumn>{numberFormater.format(props.game.price/100)}</TableRowColumn>
+    <TableRow {...props}>
+      <TableRowColumn>{game.name}</TableRowColumn>
+      <TableRowColumn>{dateFormater.format(new Date(game.released_at))}</TableRowColumn>
+      <TableRowColumn>{numberFormater.format(game.price/100)}</TableRowColumn>
     </TableRow>
   );
 }
