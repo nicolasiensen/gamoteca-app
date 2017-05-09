@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Table, TableBody } from 'material-ui/Table';
 
 import GameTableRow from '../GameTableRow';
+import * as shapes from '../shapes';
 
 export default function GamesTable(props) {
   return (
@@ -13,4 +15,8 @@ export default function GamesTable(props) {
       </TableBody>
     </Table>
   )
+}
+
+GamesTable.propTypes = {
+  games: PropTypes.arrayOf(shapes.game).isRequired
 }
