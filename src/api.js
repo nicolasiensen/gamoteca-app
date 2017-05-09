@@ -1,5 +1,7 @@
 import 'whatwg-fetch';
 
-export function loadGames() {
-  return fetch('http://localhost:3001');
+export const loadGames = async () => {
+  const response = await fetch('http://localhost:3001');
+  const json = await response.json();
+  return json;
 }
